@@ -7,6 +7,8 @@ BODY{margin:0;font-family:Tahoma;background:#BBF7EB;min-width:800px;width:auto !
 #logo{vertical-align:middle}
 #GLR{margin-left:auto;margin-right:auto}
 #FLR tr{cursor:pointer}
+#IMG{width:480px;height:480px;padding:10px;border-radius:75px}
+.TONE:hover,.TONE:focus{background:#9BD7CB}
 h1{padding:10px;text-align:center;color:#004AAC;vertical-align:middle}
 </style>
 <link rel="canonical" href="https://floristream.github.io/">
@@ -20,7 +22,7 @@ h1{padding:10px;text-align:center;color:#004AAC;vertical-align:middle}
 <table id=GLR cellspacing=0 cellpadding=0 border=0>
 <tr><td width=250>
 <table id=FLR cellspacing=0 cellpadding=0 border=0></table>
-<td width=385><img id=IMG src=bg.png width=365 height=380 hspace=10 vspace=10>
+<td width=500><img id=IMG src=bg.png onerror="this.src='bg.png'">
 </table>
 
 <script language=JavaScript><!--
@@ -36,12 +38,12 @@ var gallery = [
 
 function S(id){ return document.getElementById(id) }
 
-function T(id){ S('IMG').src = 'https://drive.google.com/thumbnail?sz=w1000&id=' + id; }
+function T(idx){ S('IMG').src = 'https://drive.google.com/thumbnail?sz=w1000&id=' + gallery[idx][1]; }
 
 var table = S("FLR");
 var innerT = "";
-gallery.forEach(function(i){
- innerT += '<tr onclick="T(\'' + i[1] + '\');"><td style="width:32px;height:32px;background:#' + i[0] + '"><td>&nbsp;' + i[2];
+gallery.forEach(function(i,j){
+ innerT += '<tr class=TONE onfocus="T(' + j + ');" tabindex="' + j + '"><td style="width:32px;height:32px;background:#' + i[0] + '"><td>&nbsp;' + i[2];
 });
 table.innerHTML = innerT;
 //-->
