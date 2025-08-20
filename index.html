@@ -38,14 +38,14 @@ var gallery = [
 
 function S(id){ return document.getElementById(id) }
 
-function T(idx){ S('IMG').src = 'https://drive.google.com/thumbnail?sz=w1000&id=' + gallery[idx][1]; }
+function T(idx){ S('IMG').src = 'https://drive.google.com/thumbnail?sz=w1000&id=' + gallery[idx][1] }
 
-var table = S("FLR");
-var innerT = "";
-gallery.forEach(function(i,j){
- innerT += '<tr class=TONE onfocus="T(' + j + ');" tabindex="' + j + '"><td style="width:32px;height:32px;background:#' + i[0] + '"><td>&nbsp;' + i[2];
-});
-table.innerHTML = innerT;
-//-->
+window.onload=function(){
+ var table = S("FLR"), innerT = "";
+ gallery.forEach(function(i,j){
+  innerT += '<tr class=TONE onfocus="T(' + j + ');" tabindex="' + j + '"><td style="width:32px;height:32px;background:#' + i[0] + '"><td>&nbsp;' + i[2]
+ });
+ table.innerHTML = innerT
+}//-->
 </script>
 <p><center><small>&#169; 2025 floristream<br>All rights reserved</small></center>&nbsp;<br></body></html>
