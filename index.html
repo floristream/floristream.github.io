@@ -3,13 +3,22 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8">
 <style type=text/css>
-BODY{margin:0;font-family:Tahoma;background:#BBF7EB;min-width:800px;width:auto !important}
+BODY{margin:0;font-family:Tahoma;background:#BBF7EB;color:#004AAC;width:auto !important}
+h1{padding:0;text-align:center;vertical-align:middle}
 #logo{vertical-align:middle}
-#GLR{margin-left:auto;margin-right:auto}
+#GLR{display:flex;flex-wrap:wrap;justify-content:center}
+.LEFT{padding:10px;width:250px}
+.RIGHT{width:50%}
+@media screen and (max-width:800px){
+h1{font-size:22px}
+#logo{width:49px;height:51px}
+.LEFT{padding:0;height:15vh;overflow-y:auto}
+.RIGHT{width:90%;text-align:center}
+}
 #FLR tr{cursor:pointer}
-#IMG{width:480px;height:480px;padding:10px;border-radius:75px}
+#IMG{max-width:100%;height:auto;padding:8px;border-radius:70px}
 .TONE:hover,.TONE:focus{background:#9BD7CB}
-h1{padding:10px;text-align:center;color:#004AAC;vertical-align:middle}
+#CPY{text-align:center;font-size:small}
 </style>
 <link rel="canonical" href="https://floristream.github.io/">
 <link rel="alternate" href="https://floristream.github.io/" hreflang="en">
@@ -19,12 +28,14 @@ h1{padding:10px;text-align:center;color:#004AAC;vertical-align:middle}
 </head>
 <body><noscript>JavaScript is required</noscript>
 <h1>floristream tones gallery <img id=logo src=logo.png></h1>
-<table id=GLR cellspacing=0 cellpadding=0 border=0>
-<tr><td width=250>
+<div id=GLR>
+<div class=LEFT>
 <table id=FLR cellspacing=0 cellpadding=0 border=0></table>
-<td width=500><img id=IMG src=bg.png onerror="this.src='bg.png'">
-</table>
-
+</div>
+<div class=RIGHT>
+<img id=IMG src=bg.png onerror="this.src='bg.png'" width=480 height=480>
+</div>
+</div>
 <script language=JavaScript><!--
 var gallery = [
  [ '00d062', '1H11fWKvP4RKaCy4wDbPNxriWVtI1zZ8x', 'Diamond' ],
@@ -48,4 +59,4 @@ window.onload=function(){
  table.innerHTML = innerT
 }//-->
 </script>
-<p><center><small>&#169; 2025 floristream<br>All rights reserved</small></center>&nbsp;<br></body></html>
+<p id=CPY>&#169; 2025 floristream<br>All rights reserved<br>&nbsp;</body></html>
