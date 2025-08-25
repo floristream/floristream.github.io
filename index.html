@@ -7,13 +7,13 @@ BODY{margin:0;font-family:Tahoma;background:#BBF7EB;color:#004AAC;width:auto !im
 h1{padding:0;text-align:center;vertical-align:middle}
 #logo{vertical-align:middle}
 #GLR{display:flex;flex-wrap:wrap;justify-content:center}
-.LEFT{padding:10px;width:250px}
-.RIGHT{width:30%;background-image:url("spin.gif");background-position:center;background-repeat:no-repeat;background-size:10%}
+#MENU{padding:10px;width:250px}
+#VIEW{width:30%;background-image:url("spin.gif");background-position:center;background-repeat:no-repeat;background-size:32px}
 @media screen and (max-width:800px){
 h1{font-size:22px}
 #logo{width:49px;height:51px}
-.LEFT{padding:0;height:15vh;overflow-y:auto}
-.RIGHT{width:90%;text-align:center}
+#MENU{padding:0;height:16vh;overflow-y:auto}
+#VIEW{width:90%;text-align:center}
 }
 #FLR tr{cursor:pointer}
 #IMG{width:100%;height:auto;padding:8px;border-radius:70px}
@@ -24,43 +24,13 @@ h1{font-size:22px}
 <link rel="alternate" href="https://floristream.github.io/" hreflang="en">
 <link rel="alternate" href="https://floristream.github.io/" hreflang="x-default">
 <LINK REL="icon" HREF="favicon.ico" TYPE="image/x-icon"><LINK REL="shortcut icon" HREF="favicon.ico" TYPE="image/x-icon">
+<script src=gallery.js></script>
 <title>floristream tones gallery</title>
 </head>
 <body><noscript>JavaScript is required</noscript>
 <h1>floristream tones gallery <img id=logo src=logo.png></h1>
 <div id=GLR>
-<div class=LEFT>
-<table id=FLR cellspacing=0 cellpadding=0 border=0></table>
+<div id=MENU></div>
+<div id=VIEW><img id=IMG src=bg.png onerror="this.src='bg.png'" width=480 height=480></div>
 </div>
-<div class=RIGHT>
-<img id=IMG src=bg.png onerror="this.src='bg.png'" width=480 height=480>
-</div>
-</div>
-<script language=JavaScript><!--
-var gallery = [
- [ '00d062', '1H11fWKvP4RKaCy4wDbPNxriWVtI1zZ8x', 'Diamond' ],
- [ '058743', '1jT-c0aYKD81LB9VOMLiloUnpNhnw4oov', 'Emerald green' ],
- [ '058743', '1dDq3waxbslsQCySP9LxYu-klOhHp_keS', 'Emerald green variegated' ],
- [ '32CD32', '1I3iU7i7kGpz1YRkI6KhGqhb3-UFClaQj', 'Lime green' ],
- [ 'FFC0CB', '1olWWiVtPm3Lx38kAJKMNwwNgLKJ70O1y', 'Pink' ],
- [ 'FFB6C1', '1FTOx_c2fwJym86EmJ7QYKH8ZQgls8TdH', 'Light pink' ],
- [ 'e6d7ff', '1EtCp8sI0r7onCL-ADFaWyXDPLRgh9wtJ', 'Lilac' ]
-];
-
-function S(id){ return document.getElementById(id) }
-
-function T(idx){
- var img = S('IMG');
- img.src = 'transp.gif'
- img.src = 'https://drive.google.com/thumbnail?sz=w1000&id=' + gallery[idx][1]
-}
-
-window.onload=function(){
- var table = S("FLR"), innerT = "";
- gallery.forEach(function(i,j){
-  innerT += '<tr class=TONE onfocus="T(' + j + ');" tabindex="' + j + '"><td style="width:32px;height:32px;background:#' + i[0] + '"><td>&nbsp;' + i[2]
- });
- table.innerHTML = innerT
-}//-->
-</script>
-<p id=CPY>&#169; 2025 floristream<br>All rights reserved<br><img src="transp.gif" width=1 height=1></body></html>
+<p id=CPY>&#169; 2025 floristream<br>All rights reserved<br>&nbsp;</body></html>
