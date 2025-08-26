@@ -15,3 +15,6 @@ For example:
 FFF,id1,White color
 800000,id2,Maroon color
 ```
+
+Feel free to reuse the gallery source code. It was released by [Vladimir Kameñar](https://github.com/vkamenar) to the public domain.
+Please, don't copy the sample images. They are copyrighted by their respective authors.
