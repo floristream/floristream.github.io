@@ -1,6 +1,6 @@
 # ❀floristream tones gallery
 
-A simple gallery using plain HTML, CSS and JavaScript, without any external dependencies. The sample fotos are stored on Google Drive.
+A simple responsive gallery using plain HTML, CSS and JavaScript, without any external dependencies. The sample fotos are stored on Google Drive.
 The gallery imports the fotos catalog from a CSV file. The CSV file has the following fields:
 
 `RGB,ID,Label`
