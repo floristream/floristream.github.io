@@ -4,7 +4,7 @@ A simple responsive gallery using plain HTML, CSS and JavaScript, without any ex
 
 ### CSV file
 
-The gallery imports the images catalog from a CSV file. The CSV file has the following fields:
+The gallery imports the image catalog from a CSV file. The CSV file has the following fields:
 
 `RGB,ID,Label`
 
@@ -15,14 +15,14 @@ The gallery imports the images catalog from a CSV file. The CSV file has the fol
 For example:
 
 ```
-FFF,id1,White color
-800000,id2,Maroon color
+FFF,XXXXXXXXXXXXXXXXXXXX,White color
+800000,XXXXXXXXXXXXXXXXXXXX,Maroon color
 ```
 
 ### Google Drive File ID
 
 If you store the image files for the gallery on Google Drive, it's necessary to make these files viewable by any user.
-You can grant public access to each specific file or to the whole directory where all the images are stored. Just open
+You can grant public access to each specific file or to the directory where all the images are stored. Just open
 the **Share** dialog and select **Anyone with the link** under **General Access**. The *role* should be set to **Viewer**
 to prevent modifications.  
 
