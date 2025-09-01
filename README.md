@@ -8,9 +8,11 @@ The gallery imports the image catalog from a CSV file. The CSV file has the foll
 
 `RGB,ID,Label`
 
-`RGB` is the tone color in hexadecimal format without the `#` symbol.  
+`RGB` is the tone color in hexadecimal format without the `#` symbol.
+This RGB value is used in the CSS context only. Therefore, it's safe to use the abbreviated 3-character values, for example: FFF, 000.  
 `ID` is the unique file ID on Google Drive (see below).  
-`Label` is the text label for the current picture.  
+`Label` is the text label for the current picture. For the sake of simplicity the CSV parser doesn't handle escaping.
+Therefore, the text label should not contain commas.  
 
 For example:
 
