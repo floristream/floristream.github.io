@@ -1,6 +1,6 @@
 # ❀floristream tones gallery
 
-A simple responsive gallery using plain HTML, CSS and JavaScript, without any external dependencies. The sample fotos are stored on Google Drive.  
+A simple responsive gallery using plain HTML, CSS and JavaScript, without any external dependencies. The images are stored on Google Drive.  
 
 ### CSV file
 
@@ -36,5 +36,6 @@ Just copy the File ID from the URL to the CSV file.
 
 ### Copying
 
-Feel free to reuse the gallery [source code](src/gallery.js). It was released by [Vladimir Kameñar](https://github.com/vkamenar) to the public domain.
+Feel free to reuse the gallery [source code](src/gallery.js). It was released by [Vladimir Kameñar](https://github.com/vkamenar)
+to the public domain. The source code is based on a minimalistic AJAX driver compatible even with older browsers like IE6.
 Please, don't copy the sample images. They are copyrighted by their respective authors.  
