@@ -47,26 +47,24 @@ return hasOwn.call(obj,key);return key===undefined||hasOwn.call(obj,key)},type:f
 for(length=obj.length;i<length&&callback.call(obj[i],i,obj[i])!==!1;i++);else for(i in obj)
 if(callback.call(obj[i],i,obj[i])===!1)
 break;return obj},Deferred:function(func){var prom={als:function(){deferred.done(arguments).fail(arguments)},prom:function(obj){return jlib.ext(obj,prom)}},deferred={};jlib.each([["resolve","done",!0],["reject","fail",!0],["notify","progress"]],function(i,tuple){var list=jlib.CB(tuple[2]);prom[tuple[1]]=list.add;deferred[tuple[0]]=function(){deferred[tuple[0]+"With"](this===deferred?prom:this,arguments);return this};deferred[tuple[0]+"With"]=list.fireWith});prom.prom(deferred);if(func)
-func.call(deferred,deferred);return deferred},ready:function(){if(!jlib.isReady){jlib.isReady=!0;readyList.resolveWith(document,[jlib]);loadGallery()}},ajaxCFG:{url:ajaxLoc,async:!0},ajax:function(options){var i,cacheURL,timeoutTimer,transport,s=ajaxExt(ajaxExt({},jlib.ajaxCFG),options),callbackContext=s.context||s,deferred=jlib.Deferred(),completeDeferred=jlib.CB(!0),statusCode=s.statusCode||{},requestHeaders={},state=0,strAbort="canceled",jqXHR={readyState:0,setRequestHeader:function(name,value){if(!state)
-requestHeaders[name]=value},statusCode:function(map){var code;if(map){if(state<2){for(code in map)
+func.call(deferred,deferred);return deferred},ready:function(){if(!jlib.isReady){jlib.isReady=!0;readyList.resolveWith(document,[jlib]);loadGallery()}},ajaxCFG:{url:ajaxLoc,async:!0},ajax:function(options){var i,timeoutTimer,transport,s=ajaxExt(ajaxExt({},jlib.ajaxCFG),options),cbCtx=s.context||s,deferred=jlib.Deferred(),completeDeferred=jlib.CB(!0),statusCode=s.statusCode||{},reqHeaders={},state=0,strAbort="canceled",jqXHR={readyState:0,setRequestHeader:function(name,value){if(!state)
+reqHeaders[name]=value},statusCode:function(map){var code;if(map){if(state<2){for(code in map)
 statusCode[code]=[statusCode[code],map[code]]}else jqXHR.als(map[jqXHR.status])}
 return this},abort:function(){var finalText=strAbort;if(transport)
 transport.abort(finalText);done(0,finalText)}};deferred.prom(jqXHR).complete=completeDeferred.add;jqXHR.success=jqXHR.done;jqXHR.error=jqXHR.fail;s.url=((s.url||ajaxLoc)+"").replace(rprotocol,ajaxLocParts[1]+"//");if(state===2)
-return;cacheURL=s.url;if(s.data){cacheURL=(s.url+=(rquery.test(cacheURL)?"&":"?")+s.data);delete s.data}
-if(s.cache===!1)
-s.url=cacheURL+(rquery.test(cacheURL)?"&":"?")+"_="+nonce++;jqXHR.setRequestHeader("Accept","*/".concat("*"));for(i in s.headers)
+return;s.url+=(rquery.test(s.url)?"&":"?")+"_="+nonce++;jqXHR.setRequestHeader("Accept","*/".concat("*"));for(i in s.headers)
 jqXHR.setRequestHeader(i,s.headers[i]);strAbort="abort";for(i in{success:1,error:1,complete:1})
 jqXHR[i](s[i]);transport=inspectTransports(s);if(!transport)
 done(-1,"No Transport");else{jqXHR.readyState=1;if(state===2)
 return;if(s.async&&s.timeout>0)
-timeoutTimer=window.setTimeout(function(){jqXHR.abort("timeout")},s.timeout);try{state=1;transport.send(requestHeaders,done)}catch(e){if(state>=2)
+timeoutTimer=window.setTimeout(function(){jqXHR.abort("timeout")},s.timeout);try{state=1;transport.send(reqHeaders,done)}catch(e){if(state>=2)
 throw e;done(-1,e)}}
 function done(status,statusText,responses){var isSuccess,success,error,response,modified;if(state===2)
 return;state=2;if(timeoutTimer)
 window.clearTimeout(timeoutTimer);transport=undefined;jqXHR.readyState=status>0?4:0;isSuccess=status>=200&&status<300||status===304;if(responses)
 response=responses.text;response={state:"success",data:response};if(isSuccess){if(status!==204&&status!==304){success=response.data;error=response.error;isSuccess=!error}}else if(status<0)
 status=0;jqXHR.status=status;if(isSuccess)
-deferred.resolveWith(callbackContext,[success,"",jqXHR]);else deferred.rejectWith(callbackContext,[jqXHR,"",error]);jqXHR.statusCode(statusCode);statusCode=undefined;completeDeferred.fireWith(callbackContext,[jqXHR,""])}
+deferred.resolveWith(cbCtx,[success,"",jqXHR]);else deferred.rejectWith(cbCtx,[jqXHR,"",error]);jqXHR.statusCode(statusCode);statusCode=undefined;completeDeferred.fireWith(cbCtx,[jqXHR,""])}
 return jqXHR}});jlib.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),function(i,name){class2type["[object "+name+"]"]=name.toLowerCase()});jlib.CB=function(once){var options=once,firing,memory,locked,list=[],queue=[],firingIndex=-1,fire=function(){locked=options;firing=!0;for(;queue.length;firingIndex=-1){memory=queue.shift();while(++firingIndex<list.length)
 list[firingIndex].apply(memory[0],memory[1])}
 firing=!1;if(locked)
@@ -93,11 +91,10 @@ callback(undefined,!0)}}};function createStandardXHR(){try{return new window.XML
 var VTO,transp='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';function S(id){return document.getElementById(id)}
 function T(id){var img=S('IMG');img.src=transp;img.src='https://drive.google.com/thumbnail?sz=w1000&id='+id}
 function loadGallery(){var menu=S('MENU'),img=S('IMG');if(VTO)
-window.clearTimeout(VTO);menu.innerHTML="Loading...";img.src=transp;jlib.ajax({url:"gallery.csv",cache:!1,error:function(){menu.innerHTML="Hold on. Retrying...";VTO=window.setTimeout('loadGallery()',5100)},success:function(d){img.src="bg.png";var s,j,k=0,i=0,eof=0,innerT="<table id=FLR cellspacing=0 cellpadding=0 border=0>";while(!eof){if((j=d.indexOf('\n',i))<0){j=d.length;eof=1}
+window.clearTimeout(VTO);menu.innerHTML="Loading...";img.src=transp;jlib.ajax({url:"gallery.csv",error:function(){menu.innerHTML="Hold on. Retrying...";VTO=window.setTimeout('loadGallery()',5100)},success:function(d){img.src="bg.png";var s,j,k=0,i=0,eof=0,innerT="<table id=FLR cellspacing=0 cellpadding=0 border=0>";while(!eof){if((j=d.indexOf('\n',i))<0){j=d.length;eof=1}
 s=d.substring(i,j).split(",",3);if(s.length===3)
 innerT+='<tr class=TONE onfocus="T(\''+s[1]+'\');" tabindex="'+(k++)+'"><td style="width:32px;height:32px;background:#'+s[0]+'"><td>&nbsp;'+s[2];i=j+1}
-menu.innerHTML=innerT+"</table>"},timeout:10000})}
-//-->
+menu.innerHTML=innerT+"</table>"},timeout:10000})}//-->
 </script>
 <title>floristream tones gallery</title>
 </head>
