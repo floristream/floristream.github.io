@@ -152,14 +152,14 @@ jlib.ext({
  },
 
  ajax: function(options){
-  var i, cacheURL, timeoutTimer, transport, s = ajaxExt(ajaxExt({}, jlib.ajaxCFG), options),
-   callbackContext = s.context || s, deferred = jlib.Deferred(), completeDeferred = jlib.CB(true),
-   statusCode = s.statusCode || {}, requestHeaders = {}, state = 0, strAbort = "canceled",
+  var i, timeoutTimer, transport, s = ajaxExt(ajaxExt({}, jlib.ajaxCFG), options),
+   cbCtx = s.context || s, deferred = jlib.Deferred(), completeDeferred = jlib.CB(true),
+   statusCode = s.statusCode || {}, reqHeaders = {}, state = 0, strAbort = "canceled",
   jqXHR = {
    readyState: 0,
    setRequestHeader: function(name, value){
     if(!state)
-     requestHeaders[name] = value
+     reqHeaders[name] = value
    },
    statusCode: function(map){
     var code;
@@ -185,13 +185,7 @@ jlib.ext({
   s.url = ((s.url || ajaxLoc) + "").replace(rprotocol, ajaxLocParts[1] + "//");
   if(state === 2)
    return;
-  cacheURL = s.url;
-  if(s.data){
-   cacheURL = (s.url += (rquery.test(cacheURL) ? "&" : "?") + s.data);
-   delete s.data
-  }
-  if(s.cache === false)
-   s.url = cacheURL + (rquery.test(cacheURL) ? "&" : "?") + "_=" + nonce++;
+  s.url += (rquery.test(s.url) ? "&" : "?") + "_=" + nonce++;
   jqXHR.setRequestHeader("Accept", "*/".concat("*"));
   for(i in s.headers)
    jqXHR.setRequestHeader(i, s.headers[i]);
@@ -211,7 +205,7 @@ jlib.ext({
     }, s.timeout);
    try{
     state = 1;
-    transport.send(requestHeaders, done)
+    transport.send(reqHeaders, done)
    }catch(e){
     if(state >= 2)
      throw e;
@@ -242,12 +236,12 @@ jlib.ext({
     status = 0;
    jqXHR.status = status;
    if(isSuccess)
-    deferred.resolveWith(callbackContext, [ success, "", jqXHR ]);
+    deferred.resolveWith(cbCtx, [ success, "", jqXHR ]);
    else
-    deferred.rejectWith(callbackContext, [ jqXHR, "", error ]);
+    deferred.rejectWith(cbCtx, [ jqXHR, "", error ]);
    jqXHR.statusCode(statusCode);
    statusCode = undefined;
-   completeDeferred.fireWith(callbackContext, [ jqXHR, "" ])
+   completeDeferred.fireWith(cbCtx, [ jqXHR, "" ])
   }
   return jqXHR
  }
@@ -418,7 +412,6 @@ function loadGallery(){
  img.src = transp;
  jlib.ajax({
   url: "gallery.csv",
-  cache: false,
   error: function(){
    menu.innerHTML = "Hold on. Retrying...";
    VTO = window.setTimeout('loadGallery()', 5100)
