@@ -152,7 +152,7 @@ jlib.ext({
  },
 
  ajax: function(options){
-  var i, timeoutTimer, transport, s = ajaxExt(ajaxExt({}, jlib.ajaxCFG), options),
+  var i, toTimer, transport, s = ajaxExt(ajaxExt({}, jlib.ajaxCFG), options),
    cbCtx = s.context || s, deferred = jlib.Deferred(), completeDeferred = jlib.CB(true),
    statusCode = s.statusCode || {}, reqHeaders = {}, state = 0, strAbort = "canceled",
   jqXHR = {
@@ -173,10 +173,9 @@ jlib.ext({
     return this
    },
    abort: function(){
-    var finalText = strAbort;
     if(transport)
-     transport.abort(finalText);
-    done(0, finalText)
+     transport.abort();
+    done(0, strAbort)
    }
   };
   deferred.prom(jqXHR).complete = completeDeferred.add;
@@ -192,7 +191,7 @@ jlib.ext({
   strAbort = "abort";
   for(i in { success: 1, error: 1, complete: 1 })
    jqXHR[i](s[i]);
-  transport = inspectTransports(s);
+  transport = doTransp(s);
   if(!transport)
    done(-1, "No Transport");
   else{
@@ -200,7 +199,7 @@ jlib.ext({
    if(state === 2)
     return;
    if(s.async && s.timeout > 0)
-    timeoutTimer = window.setTimeout(function(){
+    toTimer = window.setTimeout(function(){
      jqXHR.abort("timeout")
     }, s.timeout);
    try{
@@ -218,8 +217,8 @@ jlib.ext({
    if(state === 2)
     return;
    state = 2;
-   if(timeoutTimer)
-    window.clearTimeout(timeoutTimer);
+   if(toTimer)
+    window.clearTimeout(toTimer);
    transport = undefined;
    jqXHR.readyState = status > 0 ? 4 : 0;
    isSuccess = status >= 200 && status < 300 || status === 304;
@@ -338,13 +337,13 @@ jlib.ready.prom();
 
 jlib.ajaxCFG.xhr = window.ActiveXObject !== undefined ? function(){
  try{
-  return document.documentMode > 8 ? createStandardXHR() : new window.ActiveXObject("Microsoft.XMLHTTP")
+  return document.documentMode > 8 ? createStdXHR() : new window.ActiveXObject("Microsoft.XMLHTTP")
  }catch(e){}
-} : createStandardXHR;
+} : createStdXHR;
 
 var xhrSupported = jlib.ajaxCFG.xhr();
 
-function inspectTransports(opt){
+function doTransp(opt){
  var callback;
  if(!xhrSupported)
   return 0;
@@ -390,7 +389,7 @@ function inspectTransports(opt){
  }
 };
 
-function createStandardXHR(){
+function createStdXHR(){
  try{ return new window.XMLHttpRequest() }catch(e){}
 }
 
