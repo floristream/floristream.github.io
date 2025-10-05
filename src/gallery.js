@@ -425,7 +425,7 @@ function loadGallery(){
     }
     s = d.substring(i, j).split(",", 3);
     if(s.length === 3)
-     innerT += '<tr class=TONE onfocus="T(\'' + s[1] + '\');" tabindex="' + (k++) + '"><td style="width:32px;height:32px;background:#' + s[0] + '"><td>&nbsp;' + s[2];
+     innerT += '<tr class=TONE onfocus="T(\'' + s[1] + '\');" tabindex="' + (k++) + '"><td class=FLO style="background:#' + s[0] + '"><td>&nbsp;' + s[2];
     i = j + 1
    }
    menu.innerHTML = innerT + "</table>"
