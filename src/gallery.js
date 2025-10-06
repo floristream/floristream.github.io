@@ -417,15 +417,24 @@ function loadGallery(){
   },
   success: function(d){
    img.src = "bg.png";
-   var s, j, k = 0, i = 0, eof = 0, innerT = "<table id=FLR cellspacing=0 cellpadding=0 border=0>";
+   var s, j, c, x, y, k = 0, i = 0, eof = 0, innerT = "<table id=FLR cellspacing=0 cellpadding=0 border=0>";
    while(!eof){
     if((j = d.indexOf('\n', i)) < 0){
      j = d.length;
      eof = 1
     }
     s = d.substring(i, j).split(",", 3);
-    if(s.length === 3)
-     innerT += '<tr class=TONE onfocus="T(\'' + s[1] + '\');" tabindex="' + (k++) + '"><td class=FLO style="background:#' + s[0] + '"><td>&nbsp;' + s[2];
+    if(s.length === 3){
+     c = s[0].split("-", 3);
+     if(c.length > 1){
+      x = "linear-gradient(90deg";
+      for(y = 0; y < c.length; y++)
+       x += ",#" + c[y];
+      x += ")";
+     }else
+      x = "#" + c[0];
+     innerT += '<tr class=TONE onfocus="T(\'' + s[1] + '\');" tabindex="' + (k++) + '"><td class=FLO style="background:' + x + '"><td>&nbsp;' + s[2];
+    }
     i = j + 1
    }
    menu.innerHTML = innerT + "</table>"
