@@ -8,8 +8,8 @@ The gallery loads the image catalog from a CSV file. The CSV file has the follow
 
 `RGB,ID,Label`
 
-`RGB` is the tone color in hexadecimal format without the `#` symbol.
-This RGB value is used in the CSS context only. Therefore, it's safe to use the abbreviated 3-character values, for example: FFF, 000.  
+`RGB` is the custom bullet color (or a hyphen-separated list of colors) in hexadecimal format without the `#` symbol.
+These RGB values are used in the CSS context only. Therefore, it's safe to use the abbreviated 3-character values, for example: FFF, 000.  
 `ID` is the unique file ID on Google Drive (see below).  
 `Label` is the text label for the current picture. For the sake of simplicity the CSV parser doesn't handle escaping.
 Therefore, the text labels should not contain commas.  
@@ -20,6 +20,10 @@ For example:
 FFF,XXXXXXXXXXXXXXXXXXXX,White color
 800000,XXXXXXXXXXXXXXXXXXXX,Maroon color
 ```
+
+When the custom bullet color is a list of RGB values, a gradient is created, for example:
+
+![File ID](img/RGB-gradient.png)
 
 ### Google Drive File ID
 
