@@ -434,7 +434,8 @@ function loadGallery(){
      }else
       x = "#" + c[0];
      innerT += '<tr class=TONE onfocus="T(\'' + s[1] + '\');" tabindex="' + (k++) + '"><td class=FLO style="background:' + x + '"><td>&nbsp;' + s[2];
-    }
+    }else if(s.length === 1)
+     innerT += '<tr><td class=HDR colspan=2>' + s[0];
     i = j + 1
    }
    menu.innerHTML = innerT + "</table>"
