@@ -13,10 +13,12 @@ These RGB values are used in the CSS context only. Therefore, it's safe to use t
 `ID` is the unique file ID on Google Drive (see below).  
 `Label` is the text label for the current picture. For the sake of simplicity the CSV parser doesn't handle escaping.
 Therefore, the text labels should not contain commas.  
+Lines without commas are subheaders.  
 
 For example:
 
 ```
+This is a subheader
 FFF,XXXXXXXXXXXXXXXXXXXX,White color
 800000,XXXXXXXXXXXXXXXXXXXX,Maroon color
 ```
